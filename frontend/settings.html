@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - Coaching Center Management System</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <span class="material-symbols-outlined">school</span>
+        </div>
+        <div class="sidebar-brand">
+          <h1>Coaching Center</h1>
+          <p>ADMIN CONSOLE</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="material-symbols-outlined">grid_view</span>
+          Dashboard
+        </a>
+        <a href="students.html" class="nav-link">
+          <span class="material-symbols-outlined">school</span>
+          Students
+        </a>
+        <a href="payments.html" class="nav-link">
+          <span class="material-symbols-outlined">receipt_long</span>
+          Payments
+        </a>
+        <a href="monthly-overview.html" class="nav-link">
+          <span class="material-symbols-outlined">calendar_month</span>
+          Monthly Overview
+        </a>
+        <a href="expenses.html" class="nav-link">
+          <span class="material-symbols-outlined">payments</span>
+          Expenses
+        </a>
+        <a href="reports.html" class="nav-link">
+          <span class="material-symbols-outlined">bar_chart</span>
+          Reports
+        </a>
+        <a href="settings.html" class="nav-link active">
+          <span class="material-symbols-outlined">settings</span>
+          Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="system-status-badge">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+            <span style="font-weight: 600; color: #1e293b;">Enterprise v2.6</span>
+            <span class="status-indicator"></span>
+          </div>
+          <p style="color: #64748b; font-size: 0.7rem;">Local SQLite Active</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="app-main">
+      <!-- Topbar -->
+      <header class="app-topbar">
+        <div class="topbar-search">
+          <span class="material-symbols-outlined" style="font-size: 1.1rem; color: #64748b;">search</span>
+          <input type="text" placeholder="Search student, roll, payment...">
+        </div>
+
+        <div class="topbar-actions">
+          <span class="badge-tag" id="topbar-ay-badge">Loading...</span>
+          <div class="topbar-date"></div>
+
+          <button class="btn btn-secondary btn-sm" style="padding: 0.4rem; border-radius: 50%;" title="Notifications">
+            <span class="material-symbols-outlined" style="font-size: 1.2rem;">notifications</span>
+          </button>
+
+          <div class="user-profile">
+            <div class="user-avatar">AU</div>
+            <div class="user-info">
+              <div class="user-name">Admin User</div>
+              <div class="user-role">Superintendent</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Scrollable Body -->
+      <main class="page-content">
+        <!-- Header Actions -->
+        <div style="margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <h1 style="font-size: 1.5rem; font-weight: 800;">Configuration & Maintenance</h1>
+            <span class="status-pill active">● Local Environment</span>
+          </div>
+          <p style="font-size: 0.85rem; color: #64748b; margin-top: 2px;">
+            Manage coaching center parameters, class structures, and offline SQLite backups.
+          </p>
+        </div>
+
+        <!-- 2 Column Layout -->
+        <div class="settings-layout-grid">
+          <!-- Left Column -->
+          <div>
+            <!-- Coaching Center Profile -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Coaching Center Profile</h3>
+                  <p style="font-size: 0.75rem; color: #64748b;">Receipt header and institutional details</p>
+                </div>
+                <span class="badge-tag" id="settings-active-ay-badge">Active Academic Year</span>
+              </div>
+
+              <div style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                <div class="form-group">
+                  <label class="form-label">Institution Name</label>
+                  <input type="text" class="form-control" value="Admission 3 Coaching Center" readonly>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Superintendent / Incharge</label>
+                    <input type="text" class="form-control" value="Admin User (Superintendent)" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Primary Currency</label>
+                    <input type="text" class="form-control" value="BDT (৳ - Bangladeshi Taka)" readonly>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Center Address</label>
+                  <input type="text" class="form-control" value="House 42, Road 7, Dhanmondi, Dhaka-1205" readonly>
+                </div>
+              </div>
+            </div>
+
+            <!-- Class & Fee Configurations -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Classes & Tuition Fees</h3>
+                  <p style="font-size: 0.75rem; color: #64748b;">Class-wise monthly fee structure and cohorts</p>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openModal('modal-add-class-dialog')">
+                  <span class="material-symbols-outlined" style="font-size: 1rem;">add</span>
+                  Add Class
+                </button>
+              </div>
+
+              <div class="data-table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Class</th>
+                      <th>Level</th>
+                      <th>Enrolled</th>
+                      <th>Fee</th>
+                      <th style="text-align: right;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="classes-settings-tbody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <!-- Database Backup & Maintenance -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Database Backup & Disaster Recovery</h3>
+                  <p style="font-size: 0.75rem; color: #64748b;">Offline-first local SQLite single source of truth</p>
+                </div>
+                <span class="status-pill active">● Ready</span>
+              </div>
+
+              <div class="backup-card">
+                <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem;">
+                  <div style="background: #e0e7ff; color: #3730a3; padding: 0.75rem; border-radius: 8px;">
+                    <span class="material-symbols-outlined" style="font-size: 1.5rem;">database</span>
+                  </div>
+                  <div>
+                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 2px;">SQLite Complete Database
+                      Export</h4>
+                    <p style="font-size: 0.78rem; color: #64748b;">
+                      Download the exact <code>coaching.db</code> SQLite file containing all student dossiers, payments,
+                      fee ledgers, and expenses.
+                    </p>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary" style="width: 100%; justify-content: center;"
+                  onclick="downloadDatabaseBackup()">
+                  <span class="material-symbols-outlined">download</span>
+                  Download SQLite Backup (.sqlite)
+                </button>
+              </div>
+
+              <div
+                style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                <div
+                  style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                  <div>
+                    <div style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">Start with a clean register</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">Deletes all students, payments, and expenses. Keeps
+                      classes and fee structure.</div>
+                  </div>
+                  <button class="btn btn-outline btn-sm" onclick="clearOperationalData()">
+                    Clear Students &amp; Ledgers
+                  </button>
+                </div>
+              </div>
+
+              <div
+                style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.35rem;">Academic Years Management</div>
+                <p style="font-size: 0.75rem; color: #334155; margin-bottom: 0.75rem;">
+                  Create a new academic year with a fresh class structure (0 students, restarting rolls, fresh ledgers).
+                </p>
+                <div id="academic-years-list" style="font-size: 0.8rem; margin-bottom: 0.75rem; color: #334155;"></div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+                  <input type="number" id="new-academic-year-input" class="form-control" style="width: 120px;"
+                    placeholder="e.g. 2027" min="2020" max="2100">
+                  <button class="btn btn-primary btn-sm" onclick="createAcademicYear()">Create Fresh Year</button>
+                </div>
+              </div>
+              <div
+                style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="font-size: 0.85rem; font-weight: 700; color: #92400e;">Sample Data Re-Seeding</div>
+                    <div style="font-size: 0.75rem; color: #b45309;">Reset database to pristine sample dataset for
+                      testing.</div>
+                  </div>
+                  <button class="btn btn-outline btn-sm" style="color: #b45309; border-color: #fde68a;"
+                    onclick="triggerDatabaseReseed()">
+                    Reset & Seed
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- System Architecture & Runtime -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">System Architecture</h3>
+                  <p style="font-size: 0.75rem; color: #64748b;">Offline-first local desktop environment status</p>
+                </div>
+                <span class="badge-tag">Localhost</span>
+              </div>
+
+              <div>
+                <div class="system-info-item">
+                  <span style="color: #64748b;">Application Name:</span>
+                  <span style="font-weight: 600;" id="sys-app-name">Coaching Center Management System</span>
+                </div>
+                <div class="system-info-item">
+                  <span style="color: #64748b;">Architecture Edition:</span>
+                  <span style="font-weight: 600;" id="sys-edition">Enterprise Desktop v2.6.0</span>
+                </div>
+                <div class="system-info-item">
+                  <span style="color: #64748b;">Backend Runtime:</span>
+                  <span style="font-weight: 600;" id="sys-runtime">Node.js</span>
+                </div>
+                <div class="system-info-item">
+                  <span style="color: #64748b;">Database Engine:</span>
+                  <span style="font-weight: 600; color: #004ac6;" id="sys-database">SQLite 3 (data/coaching.db)</span>
+                </div>
+                <div class="system-info-item">
+                  <span style="color: #64748b;">Database File Size:</span>
+                  <span style="font-weight: 600;" id="sys-db-size">Checking...</span>
+                </div>
+                <div class="system-info-item">
+                  <span style="color: #64748b;">Last Modified:</span>
+                  <span style="font-weight: 600;" id="sys-last-sync">Checking...</span>
+                </div>
+                <div class="system-info-item">
+                  <span style="color: #64748b;">Network Requirement:</span>
+                  <span style="font-weight: 600; color: #16a34a;">100% Offline Capable</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: Add Class -->
+  <div id="modal-add-class-dialog" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Academic Class</h3>
+        <button class="modal-close" onclick="closeModal('modal-add-class-dialog')">&times;</button>
+      </div>
+      <form id="form-add-class">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Class Name *</label>
+            <input type="text" name="class_name" class="form-control" placeholder="e.g. Class 8" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Class Number / Grade *</label>
+              <input type="number" name="class_number" class="form-control" placeholder="e.g. 8" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Monthly Tuition Fee (৳) *</label>
+              <input type="number" name="monthly_fee" class="form-control" placeholder="e.g. 1300" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-add-class-dialog')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Class</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Class -->
+  <div id="modal-edit-class-dialog" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Update Class Tuition Fee</h3>
+        <button class="modal-close" onclick="closeModal('modal-edit-class-dialog')">&times;</button>
+      </div>
+      <form id="form-edit-class">
+        <input type="hidden" name="class_id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Class Name</label>
+            <input type="text" name="class_name" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Monthly Fee (৳) *</label>
+            <input type="number" name="monthly_fee" class="form-control" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+            onclick="closeModal('modal-edit-class-dialog')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Fee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="settings.js"></script>
+</body>
+
+</html>

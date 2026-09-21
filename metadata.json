@@ -1,0 +1,6 @@
+{
+  "name": "Coaching Center Management System",
+  "description": "Offline-first management system with SQLite for student records, automatic roll generation, monthly fee tracking, expenses, and financial reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
