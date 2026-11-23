@@ -1,0 +1,65 @@
+{
+  "name": "coaching-center-management-system",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "electron:dev": "electron .",
+    "electron:build": "electron-builder --win --x64",
+    "build": "node -e \"console.log('Build completed')\"",
+    "lint": "node -c server.js backend/api.js backend/database.js main.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "sql.js": "^1.14.2"
+  },
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.coachingcentermanagement.app",
+    "productName": "CoachingCenterManagement",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "artifactName": "${productName} Setup ${version}.${ext}",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Coaching Center Management"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "server.js",
+      "backend/**/*",
+      "frontend/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/",
+        "to": "backend"
+      }
+    ],
+    "asar": true
+  }
+}
